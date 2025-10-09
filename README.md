@@ -1,8 +1,10 @@
 # **OpenNebula**
 
 # 1) Add OpenNebula APT repo & key (Ubuntu 22.04 example)
-wget -qO- https://downloads.opennebula.io/repo/repo.key | sudo apt-key add -
-echo "deb https://downloads.opennebula.io/repo/6.8/Ubuntu/22.04 stable opennebula" | \
+wget -qO- https://downloads.opennebula.io/repo/repo.key 
+| sudo apt-key add -
+echo "deb https://downloads.opennebula.io/repo/6.8/Ubuntu/22.04 stable opennebula" | 
+\
   sudo tee /etc/apt/sources.list.d/opennebula.list
 
 # (For Ubuntu 24.04, replace 22.04 with 24.04 in the line above.)
