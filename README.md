@@ -11,12 +11,15 @@ A single‑page static site describing OpenNebula vs. OpenStack, key resources, 
 ## 🚀 Deploy
 
 Option 1 — One‑click (generic)
+
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
 
 > Choose your GitHub repo when prompted. Vercel will auto‑detect a static site.
 
  Option 2 — Manual steps
+ 
 1. Create a GitHub repo and add `index.html` at repo root.
+
 2. Push your code:
    ```bash
    git init && git add . && git commit -m "init"
@@ -24,7 +27,10 @@ Option 1 — One‑click (generic)
    git remote add origin https://github.com/&lt;you&gt;/opennebula-hub.git
    git push -u origin main
    ```
+   
 3. Go to Vercel → **Add New Project** → Import your repo → **Deploy**.
+
+
 4. (Optional) Add a custom domain in Project → Settings → Domains.
 
 ## 🛠️ Quick Start — OpenNebula (Ubuntu)
