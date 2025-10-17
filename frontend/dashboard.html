@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Dashboard | OpenNebula Hub</title>
+  <link rel="stylesheet" href="./styles.css"/>
+  <style>
+    body{display:flex;align-items:center;justify-content:center;min-height:100vh}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+      border:1px solid var(--border);border-radius:16px;padding:2rem;box-shadow:var(--shadow);
+      width:clamp(300px,90vw,520px);text-align:center}
+    h2{margin-bottom:.5rem}
+    .muted{color:var(--muted)}
+    .pill{display:inline-block;margin-top:.5rem;padding:.35rem .7rem;border:1px solid var(--border);border-radius:999px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Welcome, <span id="username">User</span> 👋</h2>
+    <p class="muted">You’re signed in to OpenNebula Hub.</p>
+    <div id="email-pill" class="pill" aria-live="polite"></div>
+
+    <div class="buttons" style="margin-top:14px">
+      <a class="cta" href="./index.html">← Back to Home</a>
+      <button id="logout" class="cta" style="margin-left:10px">Sign Out</button>
+    </div>
+  </div>
+
+  <!-- Firebase must load first -->
+  <script type="module" src="./firebase.js"></script>
+
+  <!-- Greet by displayName; fallback to email prefix -->
+  <script type="module">
+    const { auth, onAuthStateChanged, signOut } = window.__fb;
+
+    const nameEl = document.getElementById("username");
+    const emailPill = document.getElementById("email-pill");
+    const logoutBtn = document.getElementById("logout");
+
+    function emailPrefix(email) {
+      return (email || "").split("@")[0] || "User";
+    }
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        // Not signed in → go back to login
+        window.location.href = "./login.html";
+        return;
+      }
+      const name = user.displayName && user.displayName.trim()
+        ? user.displayName
+        : emailPrefix(user.email);
+
+      nameEl.textContent = name;
+      emailPill.textContent = user.email || "";
+    });
+
+    logoutBtn.addEventListener("click", async () => {
+      await signOut(auth);
+      window.location.href = "./login.html";
+    });
+  </script>
+</body>
+</html>

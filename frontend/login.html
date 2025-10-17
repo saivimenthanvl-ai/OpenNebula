@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Login | OpenNebula Hub</title>
+  <link rel="stylesheet" href="./styles.css"/>
+  <style>
+    body{display:flex;align-items:center;justify-content:center;min-height:100vh}
+    .login-box{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+      border:1px solid var(--border);border-radius:16px;padding:2rem;box-shadow:var(--shadow);
+      width:clamp(300px,90vw,420px);text-align:center}
+    .login-box h2{margin-bottom:.5rem}
+    .login-box .muted{margin-top:0;color:var(--muted)}
+    .login-box input{width:100%;padding:10px;margin:8px 0;border-radius:8px;border:1px solid var(--border);background:#111826;color:var(--text)}
+    .row{display:flex;gap:10px}
+    .row input{flex:1}
+    .btn{width:100%;padding:10px;margin-top:10px;border:none;border-radius:8px;background:linear-gradient(135deg,var(--accent),#5b6cff);color:#fff;font-weight:600;cursor:pointer}
+    .btn:hover{transform:scale(1.02)}
+    .switch{margin-top:1rem;color:var(--muted);cursor:pointer}
+    .switch:hover{color:var(--accent2)}
+    .error{color:#ff7b7b;margin-top:8px;min-height:22px}
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2 id="form-title">Sign In</h2>
+    <p class="muted" id="form-desc">Use your email and password.</p>
+
+    <div class="row" id="name-row" style="display:none">
+      <input type="text" id="name" placeholder="Full name"/>
+    </div>
+    <input type="email" id="email" placeholder="Email" required/>
+    <input type="password" id="password" placeholder="Password (min 6 chars)" required/>
+
+    <button class="btn" id="auth-btn">Login</button>
+    <div class="error" id="err"></div>
+    <div class="switch" id="switch-mode">Don’t have an account? Sign Up</div>
+    <p class="muted" style="margin-top:14px"><a href="./index.html">← Back to Home</a></p>
+  </div>
+
+  <!-- Firebase (module) -->
+<script type="module" src="./firebase.js"></script>
+  <!-- Auth logic -->
+  <script type="module">
+    const { auth, onAuthStateChanged, createUserWithEmailAndPassword,
+            signInWithEmailAndPassword, updateProfile } = window.__fb;
+
+    const title = document.getElementById("form-title");
+    const desc = document.getElementById("form-desc");
+    const nameRow = document.getElementById("name-row");
+    const nameEl = document.getElementById("name");
+    const emailEl = document.getElementById("email");
+    const passEl  = document.getElementById("password");
+    const btn  = document.getElementById("auth-btn");
+    const err  = document.getElementById("err");
+    const toggle = document.getElementById("switch-mode");
+
+    let isLogin = true;
+
+    toggle.addEventListener("click", () => {
+      isLogin = !isLogin;
+      err.textContent = "";
+      if (isLogin) {
+        title.textContent = "Sign In";
+        desc.textContent  = "Use your email and password.";
+        nameRow.style.display = "none";
+        btn.textContent = "Login";
+        toggle.textContent = "Don’t have an account? Sign Up";
+      } else {
+        title.textContent = "Sign Up";
+        desc.textContent  = "Create an account to access the dashboard.";
+        nameRow.style.display = "flex";
+        btn.textContent = "Create Account";
+        toggle.textContent = "Already have an account? Sign In";
+      }
+    });
+
+    function normalizeError(e) {
+      const m = (e?.message || e || "").toLowerCase();
+      if (m.includes("email-already-in-use")) return "Email already registered.";
+      if (m.includes("invalid-email"))        return "Enter a valid email address.";
+      if (m.includes("invalid-credential") || m.includes("wrong-password")) return "Invalid credentials.";
+      if (m.includes("weak-password"))        return "Password should be at least 6 characters.";
+      return "Authentication error. Try again.";
+    }
+
+    btn.addEventListener("click", async () => {
+      err.textContent = "";
+      const email = emailEl.value.trim();
+      const pass  = passEl.value;
+      const name  = nameEl.value.trim();
+
+      if (!email || !pass || (!isLogin && !name)) {
+        err.textContent = "Please fill all required fields.";
+        return;
+      }
+
+      try {
+        btn.disabled = true; btn.textContent = isLogin ? "Logging in..." : "Creating...";
+        if (isLogin) {
+          await signInWithEmailAndPassword(auth, email, pass);
+        } else {
+          const res = await createUserWithEmailAndPassword(auth, email, pass);
+          if (name) await updateProfile(res.user, { displayName: name });
+        }
+        // Success → go to dashboard
+        window.location.href = "./dashboard.html";
+      } catch (e) {
+        err.textContent = normalizeError(e);
+      } finally {
+        btn.disabled = false; btn.textContent = isLogin ? "Login" : "Create Account";
+      }
+    });
+
+    // If already logged in, redirect to dashboard
+    onAuthStateChanged(auth, (user) => {
+      if (user) window.location.href = "./dashboard.html";
+    });
+  </script>
+</body>
+</html>

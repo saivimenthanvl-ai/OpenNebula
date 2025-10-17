@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OpenNebula — Project & Learning Hub</title>
+  <meta name="description" content="OpenNebula overview, resources, skills learned, and a summary of cloud learning projects with deploy-ready static HTML." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23121a26'/%3E%3Ctext x='50' y='60' text-anchor='middle' font-size='44' fill='%23a2b5ff' font-family='Inter,Arial,sans-serif'%3EON%3C/text%3E%3C/svg%3E"/>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">ON</div> 
+        <strong>OpenNebula Hub</strong>
+      </div>
+      <nav class="links" aria-label="Primary">
+        <a href="#opennebula">OpenNebula</a>
+  <a href="#resources">Resources</a>
+  <a href="#skills">Skills</a>
+  <a href="#summary">Project Summary</a>
+  <!-- This one will flip text/URL based on auth -->
+  <a id="auth-link" href="./login.html" class="cta">Login</a>
+</nav>
+      <button id="menu" aria-label="Toggle menu" class="menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO / OVERVIEW -->
+    <section id="opennebula" class="container hero">
+      <div class="card">
+        <div class="eyebrow">Alternative to OpenStack</div>
+        <h1>OpenNebula — simple, monolithic private cloud for VMs & containers</h1>
+        <p class="lead">OpenNebula focuses on a more monolithic single-server architecture for managing virtual machines and containers. It’s a simpler way to deploy a custom cloud with quick setup and intuitive workflows. If you want to leverage hypervisors and virtual containers as your cloud foundation, OpenNebula is a great choice.</p>
+        <div class="buttons">
+          <a class="cta" href="#resources">Start Learning</a>
+          <a class="cta cta-green" href="#summary">See Projects</a>
+        </div>
+      </div>
+      <div class="card">
+        <h2 class="section-title">Why pick OpenNebula?</h2>
+        <ul class="check">
+          <li>Rapid single-node setup to learn virtualization orchestration fast</li>
+          <li>VM and container templates; Sunstone web UI</li>
+          <li>Straightforward path to add KVM hypervisors or Docker hosts</li>
+        </ul>
+        <p class="lead mt-10">Tip: Pair it with a Docker course to master container-based cloud infrastructure quickly.</p>
+      </div>
+    </section>
+
+    <!-- RESOURCES -->
+    <section id="resources" class="container">
+      <h2 class="section-title">Resources</h2>
+      <div class="grid">
+        <article class="card span-6">
+          <h3 class="mt-0">OpenNebula Docs</h3>
+          <p class="lead">Best starting point to get up and running and learn the foundations of the tool.</p>
+          <ul class="check">
+            <li>Install OpenNebula + Sunstone</li>
+            <li>Add a KVM host</li>
+            <li>Create a VM template & launch</li>
+          </ul>
+          <p>Docs: <a href="https://docs.opennebula.io/" target="_blank" rel="noopener">https://docs.opennebula.io/</a></p>
+        </article>
+
+        <article class="card span-6">
+          <h3 class="mt-0">Docker Course (follow-up)</h3>
+          <p class="lead">Learn container fundamentals to complement OpenNebula’s VM focus and run container workloads.</p>
+          <ul class="check">
+            <li>Images, containers, volumes, networks</li>
+            <li>Compose workflows</li>
+            <li>Build → push → deploy patterns</li>
+          </ul>
+          <p>Docs: <a href="https://docs.docker.com/get-started/" target="_blank" rel="noopener">https://docs.docker.com/get-started/</a></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="container">
+      <h2 class="section-title">Skills Learned</h2>
+      <div class="grid">
+        <div class="card span-6">
+          <ul class="check m-0">
+            <li>Building a cloud focused on virtualization</li>
+            <li>Hands-on experience with open-source cloud orchestration</li>
+            <li>Practical usage of OpenNebula</li>
+            <li>Docker fundamentals</li>
+          </ul>
+        </div>
+        <div class="card span-6">
+          <h3 class="mt-0">Outcome</h3>
+          <p class="lead">A working private cloud on your hardware (or VPS), plus the knowledge to run VMs and containers with templates, networking, and storage.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK START -->
+    <section id="quickstart" class="container">
+      <h2 class="section-title">Quick Start — OpenNebula on Ubuntu (copy-paste)</h2>
+      <div class="card">
+        <p class="lead">Tested on Ubuntu 22.04/24.04. This sets up the core OpenNebula daemon and the Sunstone web UI on a single node.</p>
+        <pre class="code"><code>
+</code></pre>
+        <p class="muted">Docs: <a href="https://docs.opennebula.io/" target="_blank" rel="noopener">Official OpenNebula Documentation</a></p>
+        <div class="buttons">
+          <a class="cta" href="https://vercel.com/new" target="_blank" rel="noopener">Deploy to Vercel</a>
+          <a class="cta cta-green" href="#readme">View README</a>
+        </div>
+      </div>
+    </section>
+</code></pre>
+      </div>
+    </section>
+
+    <!-- SUMMARY TABLE -->
+    <section id="summary" class="container">
+      <h2 class="section-title">Project Summary — Learning Path</h2>
+      <p class="lead">Quick look at the projects and how they fit into your learning plan.</p>
+      <div class="card">
+        <div class="table-wrap">
+          <table aria-label="Project summary table">
+            <thead>
+              <tr>
+                <th style="width:22%">Name</th>
+                <th style="width:12%">Level</th>
+                <th>Goals</th>
+                <th style="width:22%">Tools</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Static Website</td><td>Beginner</td><td>Introduction to cloud, basic static website</td><td>AWS, HTML</td></tr>
+              <tr><td>Serverless Email</td><td>Beginner</td><td>Serverless notifications from the cloud</td><td>AWS, APIs</td></tr>
+              <tr><td>Data Analytics</td><td>Intermediate</td><td>Use the cloud for data analytics</td><td>Azure Synapse</td></tr>
+              <tr><td>3-Tier Web App</td><td>Intermediate</td><td>Build a production-level web app leveraging cloud scalability</td><td>Python, 3-Tier Web Apps</td></tr>
+              <tr><td>Serverless Machine Learning</td><td>Advanced</td><td>Use advanced cloud functions for ML (e.g., facial recognition)</td><td>AWS Lambda, AWS Rekognition</td></tr>
+              <tr><td>Cloud-Based Chatbot</td><td>Advanced</td><td>Use advanced cloud tools for production chatbots</td><td>AWS Lambda, AWS Lex</td></tr>
+              <tr><td>OpenStack</td><td>Open-Source</td><td>Use OpenStack to build a private cloud</td><td>OpenStack</td></tr>
+              <tr><td>OpenNebula</td><td>Open-Source</td><td>Use OpenNebula to build a private cloud focused on virtualization</td><td>OpenNebula</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <small>© <span id="year"></span> OpenNebula Hub · Static site · Ready for Vercel</small>
+    </div>
+  </footer>
+
+<!-- Firebase (exposes window.__fb) -->
+<script type="module" src="./firebase.js"></script>
+
+<!-- Flip Login/Dashboard based on auth -->
+<script type="module">
+  const fb = window.__fb || {};
+  const link = document.getElementById('auth-link');
+
+  // Fallback if firebase isn't configured yet
+  if (!fb.auth || !fb.onAuthStateChanged) {
+    link.textContent = 'Login';
+    link.href = './login.html';
+  } else {
+    fb.onAuthStateChanged(fb.auth, (user) => {
+      if (user) {
+        link.textContent = 'Dashboard';
+        link.href = './dashboard.html';
+      } else {
+        link.textContent = 'Login';
+        link.href = './login.html';
+      }
+    });
+  }
+</script>
+  <!-- Your site JS -->
+   <script type="module" src="./firebase.js"></script>
+</body>
+</html>
